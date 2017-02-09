@@ -1,15 +1,27 @@
 sudo: required
 services: docker
-language: generic
+language: python
+python: 3.5
 
 script:
   - git clone https://github.com/czka/archlinux-docker.git
   - git clone https://github.com/terencewestphal/get-archlinux-bootstrap.git
-  - apt-get update
-  - apt-get install gpg
+  - sudo apt-get update
+  - sudo apt-get install gpg
   - bash get-archlinux-bootstrap/get-archlinux-bootstrap.sh
   - cd archlinux-docker
-  - 'python3 tar_fix.py --input ../*.tar.gz --output bootstrap.tar.gz'
+  - 'python3.5 tar_fix.py --input ../*.tar.gz --output bootstrap.tar.gz'
   - docker build --build-arg architecture=x86_64 -tag archlinux .
   - '[[ $TRAVIS_PULL_REQUEST == false ]] && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" || true'
   - '[[ $TRAVIS_PULL_REQUEST == false ]] && docker push archlinux'
+
+notifications:
+  irc:
+    channels:
+      - "chat.freenode.net#qutebrowser-dev"
+    on_success: always
+    on_failure: always
+    skip_join: true
+    template:
+      - "%{repository}#%{build_number} (%{branch} - %{commit} : %{author}): %{message}"
+      - "%{compare_url} - %{build_url}"
