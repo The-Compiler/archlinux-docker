@@ -6,8 +6,6 @@ python: 3.5
 script:
   - git clone https://github.com/czka/archlinux-docker.git
   - git clone https://github.com/terencewestphal/get-archlinux-bootstrap.git
-  - sudo apt-get update
-  - sudo apt-get install gpg
   - bash get-archlinux-bootstrap/get-archlinux-bootstrap.sh
   - cd archlinux-docker
   - 'python3.5 tar_fix.py --input ../*.tar.gz --output bootstrap.tar.gz'
