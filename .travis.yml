@@ -1,0 +1,15 @@
+sudo: required
+services: docker
+language: generic
+
+script:
+  - git clone https://github.com/czka/archlinux-docker.git
+  - git clone https://github.com/terencewestphal/get-archlinux-bootstrap.git
+  - apt-get update
+  - apt-get install gpg
+  - bash get-archlinux-bootstrap/get-archlinux-bootstrap.sh
+  - cd archlinux-docker
+  - 'python3 tar_fix.py --input ../*.tar.gz --output bootstrap.tar.gz'
+  - docker build --build-arg architecture=x86_64 -tag archlinux .
+  - '[[ $TRAVIS_PULL_REQUEST == false ]] && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" || true'
+  - '[[ $TRAVIS_PULL_REQUEST == false ]] && docker push archlinux'
