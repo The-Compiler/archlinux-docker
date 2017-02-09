@@ -12,7 +12,7 @@ script:
   - 'python3.5 tar_fix.py --input ../*.tar.gz --output bootstrap.tar.gz'
   - docker build --build-arg architecture=x86_64 -t archlinux .
   - '[[ $TRAVIS_PULL_REQUEST == false ]] && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" || true'
-  - '[[ $TRAVIS_PULL_REQUEST == false ]] && docker push archlinux'
+  - '[[ $TRAVIS_PULL_REQUEST == false ]] && docker push thecompiler/archlinux'
 
 notifications:
   irc:
