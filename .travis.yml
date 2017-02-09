@@ -10,9 +10,9 @@ script:
   - cd archlinux-docker
   - 'sed -i "s/ln -s/ln -sf/" Dockerfile'
   - 'python3.5 tar_fix.py --input ../*.tar.gz --output bootstrap.tar.gz'
-  - docker build --build-arg architecture=x86_64 -t archlinux .
+  - docker build --build-arg architecture=x86_64 -t thecompiler/archlinux .
   - '[[ $TRAVIS_PULL_REQUEST == false ]] && docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" || true'
-  - '[[ $TRAVIS_PULL_REQUEST == false ]] && docker push archlinux:thecompiler/archlinux'
+  - '[[ $TRAVIS_PULL_REQUEST == false ]] && docker push thecompiler/archlinux'
 
 notifications:
   irc:
