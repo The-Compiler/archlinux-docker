@@ -4,7 +4,7 @@ language: python
 python: 3.5
 
 script:
-  - git clone https://github.com/czka/archlinux-docker.git
+  - git clone https://github.com/The-Compiler/archlinux-docker-bare.git
   - git clone https://github.com/terencewestphal/get-archlinux-bootstrap.git
   - bash get-archlinux-bootstrap/get-archlinux-bootstrap.sh
   - cd archlinux-docker
