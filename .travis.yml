@@ -7,7 +7,7 @@ script:
   - git clone https://github.com/The-Compiler/archlinux-docker-bare.git
   - git clone https://github.com/terencewestphal/get-archlinux-bootstrap.git
   - bash get-archlinux-bootstrap/get-archlinux-bootstrap.sh
-  - cd archlinux-docker
+  - cd archlinux-docker-bare
   - 'sed -i "s/ln -s/ln -sf/" Dockerfile'
   - 'python3.5 tar_fix.py --input ../*.tar.gz --output bootstrap.tar.gz'
   - docker build --build-arg architecture=x86_64 -t archlinux-bare .
