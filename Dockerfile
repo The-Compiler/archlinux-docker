@@ -1,4 +1,4 @@
-FROM thecompiler/archlinux-bare
+FROM archlinux/base
 MAINTAINER Florian Bruhin
 
 RUN echo 'ALL ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers && \
